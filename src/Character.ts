@@ -2,10 +2,9 @@ import Archetype, { Mage } from './Archetypes';
 import Energy from './Energy';
 import Fighter from './Fighter';
 import Race, { Elf } from './Races';
+import getRandomInt from './utils';
 
-function randomStat(): number {
-  return (Math.floor(Math.random()) * 10) + 1;
-}
+const randomStat = () => getRandomInt(1, 10);
 
 export default class Character implements Fighter {
   private _race: Race;
@@ -31,6 +30,38 @@ export default class Character implements Fighter {
       type_: this._archetype.energyType,
       amount: randomStat(),
     };
+  }
+
+  public receiveDamage(attackPoints: number): number {
+    const damage = attackPoints - this._defense;
+    if (damage > 0) {
+      this._lifePoints -= damage;
+    } else {
+      this._lifePoints -= 1;
+    }
+
+    if (this._lifePoints <= 0) {
+      this._lifePoints = -1;
+    }
+
+    return this._lifePoints;
+  }
+
+  public attack(enemy: Fighter): void {
+    enemy.receiveDamage(this._strength);
+  }
+
+  public levelUp(): void {
+    this._maxLifePoints += randomStat();
+    if (this._maxLifePoints > this._race.maxLifePoints) {
+      this._maxLifePoints = this._race.maxLifePoints;
+    }
+    this._strength += randomStat();
+    this._dexterity += randomStat();
+    this._defense += randomStat();
+
+    this._energy.amount = 10;
+    this._lifePoints = this._maxLifePoints;
   }
 
   public get race() { return this._race; }
