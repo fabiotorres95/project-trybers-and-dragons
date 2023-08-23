@@ -76,5 +76,10 @@ export default class Character implements Fighter {
 
   public get dexterity() { return this._dexterity; }
 
-  public get energy() { return this._energy; }
+  public get energy() { 
+    const x: Energy = { 
+      type_: this._energy.type_, 
+      amount: this._energy.amount };
+    return x; 
+  }
 }
