@@ -8,3 +8,6 @@ Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua cr
 - quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
 - quais arquivos/pastas foram desenvolvidos pela Trybe.
 -->
+Projeto Trybers and Dragons - Trybe curso Back-End seção 9: "Programação Orientada a Objetos (POO) e SOLID"
+
+Back-End - projeto 8 de 9
